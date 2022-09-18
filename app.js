@@ -4,9 +4,9 @@ const port = 8000;
 const mongoose = require("mongoose");
 const app = express();
 const db = require('./config/mongoose');
-
+app.use(cookieparser());
 app.use(express.urlencoded());
-app.use(cookieparser);
+
 app.use('/', require('./routes'));
 app.set('view engine','ejs');
 app.set('views','./views');
