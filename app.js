@@ -31,6 +31,7 @@ app.use(session({
 // do not know why this passport.session() if we already use express session above
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 // use the route here after the passport local trategy and express session
 app.use('/', require('./routes'));
 

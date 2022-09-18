@@ -7,7 +7,7 @@ const controller = require('../controllers/homecontrollers')
 router.get('/sign-up' , controller.signup);
 router.post('/create' , controller.create);
 router.get('/sign-in' , controller.signin);
-router.get('/profilepage' , controller.profilepage);
+router.get('/profilepage' ,passport.checkAuthentication ,controller.profilepage);
 // now we are using passport as a middleware to authenicate
 router.post('/create-session' , passport.authenticate(
 'local',

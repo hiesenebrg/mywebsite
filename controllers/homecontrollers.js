@@ -37,25 +37,7 @@ module.exports.signup = function(req,res){
     return res.render('user_sign_up')
 }
 module.exports.profilepage = function(req,res){
-    // you must have cookie for this to retrieve that data because for this req.bosy is empty that is why a cookie
-    // is set  so that you can collect data from the cookie everytime you want
-    console.log(req.cookies);
-    if(req.cookies.user_id){
-        User.findById(req.cookies.user_id , function(err,user){
-            if(err){
-                console.log("there is an error while creating profilepage",err);
-            }
-            return res.render('profilepage',{
-                user:true,
-                name:user.name,
-                email:user.email
-
-            })
-        })
-            //if you do not put else here then both return will work and it will throw an error called "cannot set header after they are sent to the client"  
-        }else{
-            return res.redirect('/users/sign-in');
-        }
+    return res.render('profilepage');
 
     }
     
