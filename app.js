@@ -19,7 +19,9 @@ app.use(session({
     name:"mywebsite",
     //TODO change the secret before the deployment in production mode
     secret : 'blahsomething',
+    // saveUnitiakized means do we want to accept the data also when user is not signed in
     saveUninitialized:false,
+    // resave means do we want to save again and again the session cookie
     resave:false,
     cookie:{
         maxAge:(1000*60*100)

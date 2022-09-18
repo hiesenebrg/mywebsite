@@ -67,7 +67,7 @@ module.exports.signin = function(req,res){
 }
 module.exports.createsession = function(req,res){
     // previous all manual authentiaction cose is removes beacuse now ew have used passport local strategy from the config folder
-    
+
    return res.redirect('/');
     
 }
