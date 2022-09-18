@@ -34,6 +34,10 @@ module.exports.create = function(req, res){
 }
 
 module.exports.signup = function(req,res){
+    // if the user is already signed -in then he/she cannot go to signup page and redirected to the profilepage
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profilepage');
+    }
     return res.render('user_sign_up')
 }
 module.exports.profilepage = function(req,res){
@@ -44,6 +48,10 @@ module.exports.profilepage = function(req,res){
             
 
 module.exports.signin = function(req,res){
+    // if the user is already signed -in then he/she cannot go to sign-in page and redirected to the profilepage
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profilepage');
+    }
     return res.render('user_sign_in'); 
     
 }
