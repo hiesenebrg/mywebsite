@@ -3,7 +3,7 @@ const passport = require('passport');
 const { deleteOne } = require('../models/user');
 const LocalStrategy = require('passport-local').Strategy;
 // now we have to tell passport to use local strategy
-passsport.use(new LocalStrategy({
+passport.use(new LocalStrategy({
     // here email is our user schema email that is email 
     usernameField:'email'
 },
@@ -30,7 +30,7 @@ passport.serializeUser(function (user,done) {
 
 // deserializing the user from the key in the cookies
 passport.deserializeUser(function(id,done){
-    User.findById({id},function(err,user){
+    User.findById(id,function(err,user){
         if(err){
             console.log("There is an error while deserializing the user");
             return done(err);
