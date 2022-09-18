@@ -66,22 +66,9 @@ module.exports.signin = function(req,res){
     
 }
 module.exports.createsession = function(req,res){
-    console.log(req.body);
-    User.findOne({email : req.body.email}, function(err , user){
-        
-        if(err){
-            console.log("There is an error while finding an user  " , err);
-        }if(user){
-            if(user.password != req.body.password){
-                return res.redirect('back');
-            }
-            res.cookie('user_id' , user.id);
-            
-            return res.redirect('/users/profilepage');
-    }
-    else{
-        return res.render('user_sign_up')
-    }
-    })
+    // previous all manual authentiaction cose is removes beacuse now ew have used passport local strategy from the config folder
+    
+   return res.redirect('/');
+    
 }
 
