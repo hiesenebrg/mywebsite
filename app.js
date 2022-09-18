@@ -11,7 +11,7 @@ const passportLocal = require('./config/passport-local-strategy');
 app.use(cookieparser());
 app.use(express.urlencoded());
 
-app.use('/', require('./routes'));
+
 app.set('view engine','ejs');
 app.set('views','./views');
 // using the session
@@ -29,6 +29,8 @@ app.use(session({
 // do not know why this passport.session() if we already use express session above
 app.use(passport.initialize());
 app.use(passport.session());
+// use the route here after the passport local trategy and express session
+app.use('/', require('./routes'));
 
 
 
