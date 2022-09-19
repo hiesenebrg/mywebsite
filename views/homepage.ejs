@@ -30,9 +30,13 @@
 <!-- showing all the posts -->
 <div id="posts-list-container">
   <ul>
-    <% for (post in posts){ %>
+    <% for (post of posts){ %>
       <li>
-        <% =post.content %>
+        <%= post.content %>
+        <br>
+        <small>
+          <%= post.user.name %>
+        </small>
       </li>
       <%}%>
       
