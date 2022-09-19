@@ -16,6 +16,7 @@ module.exports.create = function(req,res){
                 post.commnents.push(comment);
                 // remember to save the post while updating
                 post.save();
+                res.redirect('/');
             });
         }
     });
