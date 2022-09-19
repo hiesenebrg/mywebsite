@@ -22,9 +22,21 @@
 <h4>
   Posts
 </h4>
+<!-- the form for getting the post data -->
 <form action="/posts/create" id="new-post-form" method="post"> 
     <textarea name="content" cols="30" rows="3"></textarea>
     <input type="submit" value="post">
 </form>
+<!-- showing all the posts -->
+<div id="posts-list-container">
+  <ul>
+    <% for (post in posts){ %>
+      <li>
+        <% =post.content %>
+      </li>
+      <%}%>
+      
+  </ul>
+</div>
 
 </section>

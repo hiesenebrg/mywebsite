@@ -1,10 +1,20 @@
 
 const User = require('../models/user')
 
+const Post = require('../models/post');
 
 
 module.exports.home = function(req,res){
-    return res.render('homepage')
+    // empty paranthessis shows all the posts irrespective of user
+    Post.find({},function(err,posts){
+        if(err){
+
+        }
+        return res.render('homepage',{
+           posts:posts 
+        });
+    })
+    
 }
 module.exports.create = function(req, res){
    
