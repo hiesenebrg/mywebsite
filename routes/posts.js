@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+
 const postcontroller = require('../controllers/postcontroller');
 
-router.post('/create', 
+router.post('/create', passport.Authentiac
     postcontroller.create
   );
 
