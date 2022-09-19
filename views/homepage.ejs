@@ -36,13 +36,15 @@
   <ul>
     <% for (post of posts){ %>
       <li>
-        <%= post.content %>
+        <p>
+          <%= post.content %>
         <br>
         <small>
           <%= post.user.name %>
         </small>
+        </p>
         <div class="post-comments">
-          <input% if(locals.user){%>
+          <% if(locals.user){%>
             <form action="/comments/create" id="new-post-form" method="post">
               <input type="text" name="content"  placeholder="Type comment..."></input>
               <!-- this line is for sending the post id to the server -->
