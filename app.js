@@ -10,7 +10,7 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 // when the server restarts all the cookie deleted means user is getting signout so  to prevent 
 // this we are using connect-mongo so that even the server resatrts our session-cookie remains working that measn user remains loggedin
-const MongoStore =  require('connect-mongo')(session);
+const MongoStore =  require('connect-mongo');
 
 
 app.use(cookieparser());
@@ -32,14 +32,14 @@ app.use(session({
         maxAge:(1000*60*100)
     },
     // mongo store is used to store the session cookie in the db
-    store : new MongoStore({
-        mongoooseConnection: db,
+    store: MongoStore.create(
+        {
+        mongoUrl: 'mongodb://localhost/mywebsite_dbb',
         autoRemove: 'disabled'
-    },
-    function(err){
-            console.log(err || 'connect-mongodb setup ok');
-        
-    })
+    },function(err){
+                console.log(err || 'connect-mongodb setup ok');}
+    )
+            
 }));
 
 // do not know why this passport.session() if we already use express session above
