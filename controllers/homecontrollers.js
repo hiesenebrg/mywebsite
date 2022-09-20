@@ -4,16 +4,28 @@ const User = require('../models/user')
 const Post = require('../models/post');
 
 
+
 module.exports.home = function(req,res){
     // empty paranthessis shows all the posts irrespective of user
-    // populate the user
-    Post.find({}).populate('user').exec(function(err,posts){
+    
+    // now we are using nested population
+    Post.find({})
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'user'
+        }       
+}).exec(function(err,posts){
+    console.log(posts);
         if(err){
                 console.log("error while getting the post data",err)
         }
         return res.render('homepage',{
            posts:posts 
         });
+        
+        // return res.send( posts);
     })
     
 }

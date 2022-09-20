@@ -20,6 +20,8 @@ module.exports.create = function(req,res){
                 post.comments.push(comment);
                 // remember to save the post while updating
                 post.save();
+                
+                
                  res.redirect('/');
             });
         }
