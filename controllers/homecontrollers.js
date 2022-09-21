@@ -11,13 +11,10 @@ module.exports.home = function(req,res){
     // now we are using nested population
     Post.find({})
     .populate('user')
-    .populate({
-        path: 'comments',
-        populate: {
-            path: 'user'
-        }       
-}).exec(function(err,posts){
-    console.log(posts);
+    .populate('comments')
+    .exec(function(err,posts){
+    
+        
         if(err){
                 console.log("error while getting the post data",err)
         }

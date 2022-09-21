@@ -17,6 +17,7 @@ module.exports.create = function(req,res){
                     console.log("there is an error while creating the error",err);
                 }
                 // now we have to update the commen in the post collection that's why we have changes the post model 
+                
                 post.comments.push(comment);
                 // remember to save the post while updating
                 post.save();
@@ -27,4 +28,17 @@ module.exports.create = function(req,res){
         }
     });
 
+    }
+    module.exports.destroy = function(req,res){
+        Comment.findById(eq.params.id , function(err,comment){
+            if(comment.user == req.user.id){
+                let postID = comment.post;
+                comment.remove();
+                Post.findByIdAndUpdate(postID, {$pull : {comments:req.params.id}},function(err,post){
+                    return res.redirect('back');
+                })
+            }else{
+                return res.redirect('back');
+            }
+        })
     }
