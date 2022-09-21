@@ -1,7 +1,8 @@
 
-const User = require('../models/user')
+
 
 const Post = require('../models/post');
+const User = require('../models/user');
 
 
 
@@ -17,10 +18,13 @@ module.exports.home = function(req,res){
         
         if(err){
                 console.log("error while getting the post data",err)
-        }
-        return res.render('homepage',{
-           posts:posts 
-        });
+        }User.find({} , function(err,users){
+            return res.render('homepage',{
+                posts:posts ,
+                all_users : users
+             });
+        })
+        
         
         // return res.send( posts);
     })
@@ -61,7 +65,15 @@ module.exports.signup = function(req,res){
     return res.render('user_sign_up')
 }
 module.exports.profilepage = function(req,res){
-    return res.render('profilepage');
+    User.findById(req.params.id,function(err,user){
+        if(err){
+            console.log("there is an error in profilepage finding user",err);return;}
+            return res.render('profilepage',{
+                profile_user : user
+            });
+        })
+
+    
 
     }
     
