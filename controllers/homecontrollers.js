@@ -3,31 +3,35 @@
 
 const Post = require('../models/post');
 const User = require('../models/user');
+const Comment = require('../models/comment');
 
 
 
-module.exports.home = function(req,res){
+module.exports.home = async function(req,res){
+    try {
+        // empty paranthessis shows all the posts irrespective of user
+    
+        // now we are using nested population
+        let posts = await Post.find({})
+        .populate('user')
+        .populate({
+            path : comments,
+            populate:{
+                model:'Comment'
+            }
+        });
+        let users = await User.find({});
+        return res.render('homepage',{
+            posts:posts ,
+            all_users : users
+         });   
+    } catch (error) {
+        console.log("there is error while populating the data", error);
+        return;
+    }
     // empty paranthessis shows all the posts irrespective of user
     
     // now we are using nested population
-    Post.find({})
-    .populate('user')
-    .populate('comments')
-    .exec(function(err,posts){
-    
-        
-        if(err){
-                console.log("error while getting the post data",err)
-        }User.find({} , function(err,users){
-            return res.render('homepage',{
-                posts:posts ,
-                all_users : users
-             });
-        })
-        
-        
-        // return res.send( posts);
-    })
     
 }
 module.exports.create = function(req, res){
