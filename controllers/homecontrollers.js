@@ -15,12 +15,13 @@ module.exports.home = async function(req,res){
         let posts = await Post.find({})
         .populate('user')
         .populate({
-            path : comments,
+            path : "comments",
             populate:{
-                model:'Comment'
+                path:'user'
             }
         });
         let users = await User.find({});
+        
         return res.render('homepage',{
             posts:posts ,
             all_users : users

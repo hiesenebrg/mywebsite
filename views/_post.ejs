@@ -7,9 +7,7 @@
     <p>
       <%= post.content %>
     <br>
-    <small>
-      
-    </small>
+    
     </p>
     <div class="post-comments">
       <% if(locals.user){%>
@@ -21,8 +19,9 @@
         </form>
         <%}%>
         <div class="post-comments-list">
-            <ul id="post-comments-<%=posts._id%>">
-                  <% for(comment in posts.comments) {%>
+            <ul id="post-comments-<%=post._id%>">
+                  <% for(comment of post.comments) {%>
+                    
                     <%- include('_comment') -%>
                     <%}%>
             </ul>
