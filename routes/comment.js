@@ -6,7 +6,7 @@ const Commentcontroller = require('../controllers/commentcontoller');
 
 router.post('/create', passport.checkAuthentication, 
 Commentcontroller.create);
-router.post('/destroy/:id', passport.checkAuthentication, 
+router.get('/destroy/:id', passport.checkAuthentication, 
 Commentcontroller.destroy);
 
 module.exports =router;

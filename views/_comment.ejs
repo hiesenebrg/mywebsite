@@ -1,7 +1,7 @@
 <li>
   <% if (locals.user && locals.user.id == comment.user.id) {%>
     <small>
-      <a href="/comment/destroy/<%= comment._id%>">X</a>
+      <a href="/comments/destroy/<%= comment._id%>">X</a>
     </small>
     <%}%>
     <p>
