@@ -11,6 +11,8 @@ const passportLocal = require('./config/passport-local-strategy');
 // when the server restarts all the cookie deleted means user is getting signout so  to prevent 
 // this we are using connect-mongo so that even the server resatrts our session-cookie remains working that measn user remains loggedin
 const MongoStore =  require('connect-mongo');
+const flash = require('connect-flash');
+const custMWare = require('./config/middleware');
 
 
 app.use(cookieparser());
@@ -46,6 +48,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+// the flash should be after the session as it work on behalf of  session cookie
+app.use(flash());
+app.use(custMWare.setFlash);
 // use the route here after the passport local trategy and express session
 app.use('/', require('./routes'));
 

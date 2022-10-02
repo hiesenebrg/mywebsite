@@ -61,12 +61,7 @@ module.exports.create = function(req, res){
 
     })
 }
-module.exports.signout = function(req,res,next){
-    res.clearCookie('mywebsite');
-    req.logout(function(err) {
-        if (err) { return next(err); }
-    return res.redirect('/');});
-}
+
 module.exports.signup = function(req,res){
     // if the user is already signed -in then he/she cannot go to signup page and redirected to the profilepage
     if(req.isAuthenticated()){
@@ -86,28 +81,58 @@ module.exports.profilepage = function(req,res){
     
 
     }
-    module.exports.update = function(req,res){
+    module.exports.update =  async function(req,res){
         // remember this is done because suppose someone chages the profile Id from the inspect then the profile of other person
         // get updated which is a blunder so always put this check so that only the currently signed in user id must matches the
         // the id coming form the update
         
-        if(req.user.id == req.params.id){
+        // if(req.user.id == req.params.id){
             
-            User.findByIdAndUpdate(req.params.id,{
-                name:req.body.name,
-                email: req.body.email
-            },function(err,user){
-                if(err){
-                    console.log("there is an error while updating the profile page",err);return;}
+        //     User.findByIdAndUpdate(req.params.id,{
+        //         name:req.body.name,
+        //         email: req.body.email
+        //     },function(err,user){
+        //         if(err){
+        //             console.log("there is an error while updating the profile page",err);return;}
+        //                 return res.redirect('back');
+        //     });
+        // }
+        // // this is for the people who is trying to feedling with my system
+        // else{
+        //     return res.status(401).send('Unauthorized hai bhai');
+        // }
+
+        if(req.user.id == req.params.id){
+                try {
+                   let user = await  User.findById(req.params.id);
+                User.uploadedAvatar(req,res, function(err){
+                        if(err){
+                            console.log('****Multer Error: '.err)
+                        }
+                        user.name = req.body.name;
+                        user.email = req.body.email;
+    // it is juist checking if the req has file then save the file path in avatar column of user db
+                        if(req.file){
+                            user.avatar = User.avatarPath + '/' + req.file.filename;
+                        }
+                        user.save();
                         return res.redirect('back');
-            });
-        }
-        // this is for the people who is trying to feedling with my system
-        else{
+
+                });
+
+
+                } catch (error) {
+                    console.log('Error' , error); 
+                    return res.redirect('back');
+                }
+
+
+
+
+        }else{
+            req.flash('error' , 'Unauthorized');
             return res.status(401).send('Unauthorized hai bhai');
-        }
-
-
+            }
     }  
             
 
@@ -121,9 +146,20 @@ module.exports.signin = function(req,res){
 }
 module.exports.createsession = function(req,res){
     // previous all manual authentiaction cose is removes beacuse now ew have used passport local strategy from the config folder
-
+        // this is showing the flash after login
+    req.flash('success','Logged in Successfully');
    return res.redirect('/');
     
+}
+module.exports.signout = function(req,res,next){
+     // this is showing the flash after login
+     
+    req.logout(function(err)
+     {
+        if (err) { return next(err); }
+         // this is showing the flash after logout
+        req.flash('success','You have logged out!');
+    return res.redirect('/');});
 }
 
 
