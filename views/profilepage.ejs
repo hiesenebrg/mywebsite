@@ -2,6 +2,7 @@
  Hope you will enjoy the website
 <% if (profile_user) { %>
     <h2>Welcome <%= profile_user.name %> with email ID <%= profile_user.email%> to your Profile page</h2>
+    <img src="<%= user.avatar%>" alt="<%= user.name%>" width="100">
   <% } %>
 
   <% if (user.id == profile_user.id) { %>

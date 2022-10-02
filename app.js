@@ -17,7 +17,8 @@ const custMWare = require('./config/middleware');
 
 app.use(cookieparser());
 app.use(express.urlencoded());
-
+// make the uploads path available to the browser
+app.use('/uploads' , express.static(__dirname + '/uploads'));
 
 app.set('view engine','ejs');
 app.set('views','./views');

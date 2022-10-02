@@ -86,21 +86,6 @@ module.exports.profilepage = function(req,res){
         // get updated which is a blunder so always put this check so that only the currently signed in user id must matches the
         // the id coming form the update
         
-        // if(req.user.id == req.params.id){
-            
-        //     User.findByIdAndUpdate(req.params.id,{
-        //         name:req.body.name,
-        //         email: req.body.email
-        //     },function(err,user){
-        //         if(err){
-        //             console.log("there is an error while updating the profile page",err);return;}
-        //                 return res.redirect('back');
-        //     });
-        // }
-        // // this is for the people who is trying to feedling with my system
-        // else{
-        //     return res.status(401).send('Unauthorized hai bhai');
-        // }
 
         if(req.user.id == req.params.id){
                 try {
