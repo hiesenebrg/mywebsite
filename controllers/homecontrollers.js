@@ -4,6 +4,8 @@
 const Post = require('../models/post');
 const User = require('../models/user');
 const Comment = require('../models/comment');
+const fs = require('fs');
+const path = require('path');
 
 
 
@@ -98,6 +100,9 @@ module.exports.profilepage = function(req,res){
                         user.email = req.body.email;
     // it is juist checking if the req has file then save the file path in avatar column of user db
                         if(req.file){
+                            if(user.avatar){
+                                fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                            }
                             user.avatar = User.avatarPath + '/' + req.file.filename;
                         }
                         user.save();
