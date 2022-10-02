@@ -5,7 +5,7 @@ const router = express.Router()
 const passport = require('passport');
 const controller = require('../controllers/homecontrollers')
 router.get('/sign-up' , controller.signup);
-router.get('/create' , controller.create);
+router.post('/create' , controller.create);
     
  
 router.get('/sign-out' , controller.signout);
