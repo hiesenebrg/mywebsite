@@ -8,6 +8,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const passportJWT = require('./config/passsport-jwt-strategy');
 // when the server restarts all the cookie deleted means user is getting signout so  to prevent 
 // this we are using connect-mongo so that even the server resatrts our session-cookie remains working that measn user remains loggedin
 const MongoStore =  require('connect-mongo');
