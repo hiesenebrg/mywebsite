@@ -13,6 +13,7 @@ const passportLocal = require('./config/passport-local-strategy');
 const MongoStore =  require('connect-mongo');
 const flash = require('connect-flash');
 const custMWare = require('./config/middleware');
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
 
 
 app.use(cookieparser());

@@ -13,6 +13,7 @@ passport.use(new googleStrategy({
 function(accessToken , refreshToken  , profile, done ){
     // find a user  
     User.findOne({email:profile.emails[0].value}).exec(function(err,user){
+        console.log(user);
         if(err){
             console.log("there is an error while google oauth", err);
             return;
