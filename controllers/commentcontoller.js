@@ -1,11 +1,14 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const commentsMailer = require('../mailers/comments_mailer');
+
 module.exports.create = async function(req,res){
+    try {
     
     // now here req.body.post has the name set in comment form which has value post._id becvause we are checking that user must comment on the valid post
-    let posts = await Post.findById(req.body.post);
+    let post = await Post.findById(req.body.post);
         
-        try {
+        
             if(post){
             
                 let comment = await Comment.create({
@@ -22,7 +25,9 @@ module.exports.create = async function(req,res){
                     // remember to save the post while updating
                     post.save();
                     
-                    
+                    comment = await comment.populate([{path: 'user', select: 'name'}, {path: 'user', select: 'email'}])
+                        // 'user', 'name email').execPopulate();
+                        commentsMailer.newComment(comment);
                      res.redirect('/');
             }
         } catch (error) {
