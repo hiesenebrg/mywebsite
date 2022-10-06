@@ -1,6 +1,9 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const commentEmailWorker = require('../workers/comment_email_worker');
+const queue = require('../config/kue');
+
 
 module.exports.create = async function(req,res){
     try {
@@ -27,7 +30,14 @@ module.exports.create = async function(req,res){
                     
                     comment = await comment.populate([{path: 'user', select: 'name'}, {path: 'user', select: 'email'}])
                         // 'user', 'name email').execPopulate();
-                        commentsMailer.newComment(comment);
+                        // commentsMailer.newComment(comment);
+                        // here we are taking the comment and enqueueing into the queue which will further process via the worker in commment_email_worker file
+                        let job = queueMicrotask.create('emails' , comment).save(function(err){
+                            if(err){
+                                console.log("There is an error in creating queue" , err);
+                            }
+                            console.log(job.id);
+                        });
                      res.redirect('/');
             }
         } catch (error) {
