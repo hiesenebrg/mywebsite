@@ -3,6 +3,7 @@ const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
 const commentEmailWorker = require('../workers/comment_email_worker');
 const queue = require('../config/kue');
+const Like = require('../models/like');
 
 
 module.exports.create = async function(req,res){
@@ -47,11 +48,13 @@ module.exports.create = async function(req,res){
         
         }
     
-    module.exports.destroy = function(req,res){
+    module.exports.destroy =  function(req,res){
         Comment.findById(req.params.id , function(err,comment){
             if(comment.user == req.user.id){
                 let postID = comment.post;
                 comment.remove();
+                // CHANGE :: destroy the assocaiated likes for hte comment
+                Like.deleteMany({likeable:comment._id, onModel: 'Comment'});
                 Post.findByIdAndUpdate(postID, {$pull : {comments:req.params.id}},function(err,post){
                     return res.redirect('back');
                 })
