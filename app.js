@@ -19,6 +19,7 @@ const passportGoogle = require('./config/passport-google-oauth2-strategy');
 
 app.use(cookieparser());
 app.use(express.urlencoded());
+app.use(express.static('./assets'));
 // make the uploads path available to the browser
 app.use('/uploads' , express.static(__dirname + '/uploads'));
 
@@ -46,6 +47,7 @@ app.use(session({
     )
             
 }));
+
 
 // do not know why this passport.session() if we already use express session above
 app.use(passport.initialize());
