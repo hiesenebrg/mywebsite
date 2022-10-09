@@ -14,6 +14,15 @@ module.exports.chatSockets =function(socketServer){
             io.on('disconnect' , function(){
                     console.log('socket disconnected..!');
         });
+// this act as a server side where this function collected the request and print joijning request recorded and then connect the request to the chat room
+// and then send (or emit) user joined to all the user
+        socket.on('join_room', function(data ){
+            console.log('joining request rec.' , data);
+
+            socket.join(data.chatroom);
+            // this will emit the data to the chat engine
+        io.in(data.chatroom).emit('user_joined', data);
+            });
     });
     
 }

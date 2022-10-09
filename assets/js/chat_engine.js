@@ -20,17 +20,17 @@ class ChatEngine{
 
         this.socket.on('connect', function(){
             console.log('connection established using sockets...!');
-
+// this function will emit or send the request to the server to join the room
             self.socket.emit('join_room', {
                 user_email: self.userEmail,
                 chatroom: 'iConnect'
             });
-
+// each user will recieve the message that  a user is joined with the data
             self.socket.on('user_joined', function(data){
                 console.log('a user joined!', data);
             })
 
-
+// please note that ..emit means sending the request and on means recieving the message (or request)
         });
     
 

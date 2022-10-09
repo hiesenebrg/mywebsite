@@ -19,7 +19,7 @@ const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(9000);
-console.log('chat server is listening on port 6000');
+console.log('chat server is listening on port 9000');
 
 app.use(cookieparser());
 app.use(express.urlencoded());
