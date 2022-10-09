@@ -11,5 +11,9 @@ module.exports.chatSockets =function(socketServer){
 
     io.on('connection', function(socket){
         console.log('new connection  recieved' , socket.id);
-    })
+            io.on('disconnect' , function(){
+                    console.log('socket disconnected..!');
+        });
+    });
+    
 }
