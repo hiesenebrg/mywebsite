@@ -33,7 +33,7 @@ module.exports.create = async function(req,res){
                         // 'user', 'name email').execPopulate();
                         // commentsMailer.newComment(comment);
                         // here we are taking the comment and enqueueing into the queue which will further process via the worker in commment_email_worker file
-                        let job = queueMicrotask.create('emails' , comment).save(function(err){
+                        let job = queue.create('emails' , comment).save(function(err){
                             if(err){
                                 console.log("There is an error in creating queue" , err);
                             }

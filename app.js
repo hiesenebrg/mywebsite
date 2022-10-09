@@ -18,8 +18,8 @@ const passportGoogle = require('./config/passport-google-oauth2-strategy');
 // setting up the chat server to be used with socket.io
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
-chatServer.listen(6000);
-console.log('chat server is listening on port 50000');
+chatServer.listen(9000);
+console.log('chat server is listening on port 6000');
 
 app.use(cookieparser());
 app.use(express.urlencoded());
@@ -29,10 +29,13 @@ app.use('/uploads' , express.static(__dirname + '/uploads'));
 
 app.set('view engine','ejs');
 app.set('views','./views');
+// please note that this sessionis used for passport local strategy that means whenever user is authentiacted using passport -local -strategy then
+// then we have to create a express-session to tokenize the cokkie by passport.serializeUser
 // using the session
 app.use(session({
     name:"mywebsite",
     //TODO change the secret before the deployment in production mode
+    // this secret key is tokeizing the cookie that  is passed through the passport.serializeUser
     secret : 'blahsomething',
     // saveUnitiakized means do we want to accept the data also when user is not signed in
     saveUninitialized:false,
@@ -56,6 +59,7 @@ app.use(session({
 // do not know why this passport.session() if we already use express session above
 app.use(passport.initialize());
 app.use(passport.session());
+// this will runthe function and set req.user to res.locals.user the the user is signed in
 app.use(passport.setAuthenticatedUser);
 // the flash should be after the session as it work on behalf of  session cookie
 app.use(flash());
