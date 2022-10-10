@@ -23,6 +23,10 @@ module.exports.chatSockets =function(socketServer){
             // this will emit the data to the chat engine
         io.in(data.chatroom).emit('user_joined', data);
             });
+            //  CHANGE :: detect send_message and broadcast to everyone in the room
+        socket.on('send_message', function(data){
+            io.in(data.chatroom).emit('receive_message', data);
+        });
     });
     
 }
