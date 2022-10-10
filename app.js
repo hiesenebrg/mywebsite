@@ -1,5 +1,6 @@
 const express = require('express');
 const env = require('./config/enviornment');
+const logger = require('morgan');
 const cookieparser = require('cookie-parser');
 const port = 8000;
 const mongoose = require("mongoose");
@@ -29,6 +30,8 @@ app.use(express.static(env.assets_path));
 // make the uploads path available to the browser
 app.use('/uploads' , express.static(__dirname + '/uploads'));
 
+
+app.use(logger(env.morgan.mode , env.morgan.options));
 app.set('view engine','ejs');
 app.set('views','./views');
 // please note that this sessionis used for passport local strategy that means whenever user is authentiacted using passport -local -strategy then
