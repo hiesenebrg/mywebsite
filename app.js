@@ -1,4 +1,5 @@
 const express = require('express');
+const env = require('./config/enviornment');
 const cookieparser = require('cookie-parser');
 const port = 8000;
 const mongoose = require("mongoose");
@@ -20,10 +21,11 @@ const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(9000);
 console.log('chat server is listening on port 9000');
+const path = require('path');
 
 app.use(cookieparser());
 app.use(express.urlencoded());
-app.use(express.static('./assets'));
+app.use(express.static(env.assets_path));
 // make the uploads path available to the browser
 app.use('/uploads' , express.static(__dirname + '/uploads'));
 
@@ -36,7 +38,7 @@ app.use(session({
     name:"mywebsite",
     //TODO change the secret before the deployment in production mode
     // this secret key is tokeizing the cookie that  is passed through the passport.serializeUser
-    secret : 'blahsomething',
+    secret : env.session_cookie,
     // saveUnitiakized means do we want to accept the data also when user is not signed in
     saveUninitialized:false,
     // resave means do we want to save again and again the session cookie
