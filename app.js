@@ -1,10 +1,12 @@
 const express = require('express');
 const env = require('./config/enviornment');
 const logger = require('morgan');
+
 const cookieparser = require('cookie-parser');
 const port = 8000;
 const mongoose = require("mongoose");
 const app = express();
+require('./config/view-helpers')(app);
 const db = require('./config/mongoose');
 // used for session cookie
 const session = require('express-session');
