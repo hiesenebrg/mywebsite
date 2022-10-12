@@ -1,4 +1,4 @@
-#home-container {
+/* #home-container {
   display: flex; }
   #home-container #feed-posts {
     width: 70%;
@@ -7,4 +7,108 @@
     width: 30%;
     padding: 10px;
     border-left: 1px solid lightgrey;
-    height: 100%; }
+    height: 100%; } */
+    h1{
+      margin:0px;
+      padding:0px;
+    }
+.navbar{
+  height:10%;
+  width: 100%;
+  background-color: cyan;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.sign-in-data{
+  height: 99%;
+  margin-left: 10%;
+   width:40%;
+   /* background-color: aliceblue; */
+ }
+.website-name{
+  height: 100%;
+  width: 30%;
+  margin-top: 15px;
+
+}
+.website-name a{
+  margin-left: 10px;
+  
+  text-align: center;
+  color:aliceblue;
+  font-size: 40px;
+  font-weight: 10px;
+  background-color: black;
+}
+
+.sign-in-data ul{
+list-style-type:none;
+}
+.user-image{
+  
+  margin-top: -20%;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin-left: 210%;
+}
+.user-name{
+  
+  /* text-align: center; */
+  color:black;
+  font-size: 40px;
+  font-weight: 10px;
+  height: fit-content;
+  /* margin-top: -21px; */
+margin-left: 35%;
+width:50%;
+/* background-color: blue; */
+
+}
+.nav-items{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.search{
+  margin-left: 5%;
+  /* width: 15%; */
+  /* background-color:black; */
+}
+.d-flex{
+  
+  margin-top:20px;
+  /* width: 6%; */
+
+}
+.sign-out{
+  margin-left: -10%;
+  margin-top: 20px;
+  color:black;
+  font-size: 20px;
+  font-weight: 10px;
+  height: fit-content;
+  /* width:0%; */
+  /* background-color: aliceblue; */
+}
+.left-part{
+  margin-top: 1%;
+  width: 50%;
+  border: 1px solid black;
+}
+.right-part{
+  position: fixed;
+  top:11%;
+  left:51%;
+  /* margin-top:-51%; */
+  /* margin-left:60%; */
+  width: 40%;
+  border: 1px solid black;
+}
+/* for taking posts */
+
+
+.for-post{
+  border: 1px solid black;
+}
