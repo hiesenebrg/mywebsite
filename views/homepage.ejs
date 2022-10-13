@@ -1,6 +1,7 @@
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     -->
+    <script src="https://kit.fontawesome.com/c51211b4b2.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/home.css">
 <link rel="stylesheet" href="/css/chat_box.css">
 
@@ -36,20 +37,18 @@
     
       
 <div class="left-part">
-  <h1>  
-    Welcome to my Home page
+  <h1 >  
+    Activity Feed
 </h1>
 
 <section id = "feed-posts">
-<h4>
-  Posts
-</h4>
+
 <!-- the form for getting the post data -->
 <!-- since we want to show this post form only when user is signed in -->
 <% if(locals.user) {%>
   <div class="for-post">
-    <form action="/posts/create" id="new-post-form" method="post"> 
-      <textarea name="content" cols="30" rows="3"  placeholder="Create your Post..."></textarea>
+    <form  action="/posts/create" id="new-post-form" method="post"> 
+      <textarea class="create-post" name="content" cols="50" rows="5"  placeholder="Create your Post..."></textarea>
       <input type="submit" value="post">
   </form>
   </div>
@@ -58,6 +57,7 @@
 %>
 <!-- showing all the posts -->
 <div id="posts-list-container">
+  
   <ul>
     <% for (post of posts){ %> 
 

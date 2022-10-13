@@ -37,7 +37,7 @@ module.exports.create = async function(req,res){
                             if(err){
                                 console.log("There is an error in creating queue" , err);
                             }
-                            console.log(job.id);
+                            // console.log(job.id);
                         });
                      res.redirect('/');
             }
