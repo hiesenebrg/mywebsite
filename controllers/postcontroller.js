@@ -5,14 +5,23 @@ const Like = require('../models/like');
     
 module.exports.create = async function(req,res){
     try {
-        await Post.create({
+        await Post.uploadedAvatar(req,res, function(err){
+             Post.create({
    
             content : req.body.content,
             // this req.user constains the data of the current signed in user and it gets due to passport-local-strategy as discussed earlier
-            user : req.user._id
-        }); 
+            user : req.user._id,
+            
+            
+            photo :  Post.avatarPath + '/' + req.file.filename
+            
+            
+            
+        })
+        
         return res.redirect('back');
-    } catch (error) {
+    } )
+}catch (error) {
         
         console.log("there is an error while creating the post", error);
     }

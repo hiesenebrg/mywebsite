@@ -47,8 +47,9 @@
 <!-- since we want to show this post form only when user is signed in -->
 <% if(locals.user) {%>
   <div class="for-post">
-    <form  action="/posts/create" id="new-post-form" method="post"> 
+    <form  action="/posts/create" id="new-post-form" enctype="multipart/form-data" method="post"> 
       <textarea class="create-post" name="content" cols="50" rows="5"  placeholder="Create your Post..."></textarea>
+      <input type="file" name="photo" placeholder="Upload photo" >
       <input type="submit" value="post">
   </form>
   </div>

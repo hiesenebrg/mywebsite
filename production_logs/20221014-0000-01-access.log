@@ -1,0 +1,17 @@
+[0mGET / [32m200[0m 187.714 ms - 3690[0m
+[0mGET / [36m304[0m 177.328 ms - -[0m
+[0mGET /users/sign-in [36m304[0m 32.755 ms - -[0m
+[0mPOST /users/create-session [36m302[0m 53.042 ms - 46[0m
+[0mGET / [32m200[0m 59.593 ms - 9159[0m
+[0mGET /users/profilepage/6329fa5862fcb771aa37eebb [32m200[0m 54.943 ms - 790[0m
+[0mPOST /users/update/6329fa5862fcb771aa37eebb [36m302[0m 62.035 ms - 172[0m
+[0mGET /users/profilepage/6329fa5862fcb771aa37eebb [36m304[0m 9.940 ms - -[0m
+[0mPOST /users/update/6329fa5862fcb771aa37eebb [36m302[0m 30.497 ms - 172[0m
+[0mGET /users/profilepage/6329fa5862fcb771aa37eebb [36m304[0m 34.588 ms - -[0m
+[0mPOST /users/update/6329fa5862fcb771aa37eebb [36m302[0m 39.343 ms - 172[0m
+[0mGET /users/profilepage/6329fa5862fcb771aa37eebb [36m304[0m 25.906 ms - -[0m
+[0mPOST /users/update/6329fa5862fcb771aa37eebb [36m302[0m 36.213 ms - 172[0m
+[0mGET /users/profilepage/6329fa5862fcb771aa37eebb [36m304[0m 11.295 ms - -[0m
+[0mPOST /users/update/6329fa5862fcb771aa37eebb [36m302[0m 23.201 ms - 172[0m
+[0mGET /users/profilepage/6329fa5862fcb771aa37eebb [36m304[0m 9.931 ms - -[0m
+[0mGET / [36m304[0m 149.361 ms - -[0m
