@@ -1,21 +1,20 @@
 <li>
-  <% if (locals.user && locals.user.id == comment.user._id) {%>
-    <small>
-      <a href="/comments/destroy/<%= comment._id%>">X</a>
-    </small>
-    <%}%>
-    <p>
-      <%= comment.content %>
-    <br>
-    <%= comment.user.name%>
-    <br>
-    <small>
+  
+    
+  <div class="comment-content" font-family: "Varela Round", sans-serif;>
+    <%= comment.content %>
+  </div>
+  
+    
       <% if(locals.user){%>
-        <a href="/likes/toogle/?id=<%= comment._id%>&type=Comment" class="toogle-like-button" data-likes="<%= comment.likes.length%>">
+        <a class="comment-likes"font-family: "Varela Round", sans-serif; href="/likes/toogle/?id=<%= comment._id%>&type=Comment" class="toogle-like-button" data-likes="<%= comment.likes.length%>">
           <%= comment.likes.length%> Likes
         </a>
-        <%}else{%>
+      <%}else{%>
           <%= comment.likes.length%> Likes
-          <%}%>
-    </small>
+        <%}%>
+        <% if (locals.user && locals.user.id == comment.user._id) {%>
+          <a class="comment-delete" href="/comments/destroy/<%= comment._id%>">delete</a>
+        <%}%>
+    
 </li>

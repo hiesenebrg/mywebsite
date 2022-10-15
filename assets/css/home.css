@@ -60,6 +60,8 @@ list-style-type:none;
   font-size: 40px;
   font-weight: 10px;
   height: fit-content;
+  /* color: aliceblue; */
+  font-family: "Varela Round", sans-serif;
   /* margin-top: -21px; */
 margin-left: 35%;
 width:50%;
@@ -97,6 +99,10 @@ width:50%;
   width: 50%;
   border: 1px solid black;
 }
+.left-part h1{
+  color:red;
+background-color: cyan;
+}
 .right-part{
   position: fixed;
   top:11%;
@@ -119,29 +125,34 @@ width:50%;
 }
 
 #posts-list-container{
+  align-items: center;
   width:100%;
   border: 1px solid red;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  background-color: skyblue;
+background-color: cyan;
   
 }
 .post-data{
   height: auto;
-  width:50%;
+  width:350px;
   display: flex;
   flex-direction: column;
   flex-wrap:wrap;
+    background-color: lightblue;
+    border: 3px solid black;
+    margin-bottom: 10px;
 }
 .post-creater{
+  margin-left: 10%;
   height: 10%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .post-photo{
 height: 40%;
 /* width: 200px; */
-border: 1px solid black;
+/* border: 1px solid black; */
 }
 .post-photo img {
   display: block;
@@ -154,24 +165,60 @@ border: 1px solid black;
   margin-right: auto;
 }
 .post-descr{
+  margin-left: 10%;
+  font-family: "Varela Round", sans-serif;
 height: 20%;
-border: 1px solid black;
+margin-bottom: 4px;
+/* border: 1px solid black; */
 }
 .like-share{
+  margin-left: 14%;
 height:10%;
-border: 1px solid black;
+/* border: 1px solid black; */
 }
 .comment{
-height: 8vh;
+  background-color:  cornflowerblue;
+  /* margin-left: 10%; */
+height: 10vh;
 border: 1px solid black;
 overflow: auto;
+margin-top: 6px;
+margin-bottom: 0px;
 }
 .type-comm{
+  
   height: 20px;
-  border: 1px solid black;
+  background-color: cornflowerblue;
+   
 }
+.comm-submit{
+  /* margin-left: 20%; */
+}
+.comm-type{
+  margin-left:10%;
+}
+
+.comment li{
+margin-left: 20px;
+}
+
 
 .post-creater a{
   margin-left: 60%;
+  font-family: "Varela Round", sans-serif;
 }
-
+.comment-content{
+  
+  height:fit-content;
+}
+.comment-delete{
+  margin-left:60%;
+  text-decoration: none;
+}
+.comment-likes{
+  text-decoration: none;
+}
+.post-likes{
+  
+  text-decoration: none;
+}

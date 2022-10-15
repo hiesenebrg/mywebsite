@@ -46,8 +46,14 @@ module.exports.toggleLike = async function(req, res){
             likeable.save();
 
         }
+        let likess = {post_id :req.query.id,
+            like:true
 
-        return res.redirect('back');
+        }
+        
+        return res.redirect('/',
+            
+        );
 }
         
 

@@ -31,7 +31,8 @@ module.exports.home = async function(req,res){
         
         return res.render('homepage',{
             posts:posts ,
-            all_users : users
+            all_users : users,
+            like_clicked : false
          });   
     } catch (error) {
         console.log("there is error while populating the data", error);

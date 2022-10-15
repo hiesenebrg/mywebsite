@@ -1,8 +1,11 @@
 <li>
   <div class="post-data">
-  <% if (locals.user && locals.user.id == post.user.id) {%>
+  
     <div class="post-creater">
-      <%= post.user.name%><a href="/posts/destroy/<%= post._id%>">X</a>
+      <%= post.user.name%>
+      <% if (locals.user && locals.user.id == post.user.id) {%>
+      <a href="/posts/destroy/<%= post._id%>">X</a>
+      <%}%>
     </div>
     <div class="post-photo">
       <img src="<%= post.photo%>" alt="photo">
@@ -12,9 +15,14 @@
     </div>
     <div class="like-share">
       <% if(locals.user){%>
-        <a href="/likes/toogle/?id=<%= post._id%>&type=Post" class="toogle-like-button" data-likes="<%= post.likes.length%>">
+        <a class="post-likes" href="/likes/toogle/?id=<%= post._id%>&type=Post" class="toogle-like-button" data-likes="<%= post.likes.length%>">
           <%= post.likes.length%> <i class="fa-regular fa-heart"></i>
         </a>
+        <%if(like_clicked){%>
+          
+          hey you clicked that
+          <script type ="text/javascript" src="like_script.js"></script>
+          <%}%>
         <%}else{%>
           <%= post.likes.length%> Likes
       <%}%>
@@ -31,33 +39,21 @@
     <% if(locals.user){%>
       <div class="type-comm">
         <form class="add-a-comment" action="/comments/create" id="new-post-form" method="post">
-          <input type="text" name="content"  placeholder="Type comment..."></input>
+          <input class="comm-type" type="text" name="content"  placeholder="Type comment..."></input>
           <!-- this line is for sending the post id to the server -->
           <input type="hidden" name="post" value="<%= post._id%>"></input>
           
-          <input  type="submit" value="Add commnent">
+          <input class="comm-submit" type="submit" value="Add commnent">
         </form>
       </div>
       
       <%}%>
   </div>
 
-    <!-- <small>
-      <a href="/posts/destroy/<%= post._id%>">X</a>
-    </small> -->
-    <!-- <br> -->
+   
     
-    <%}%>
     
-    <small>
-     
-    </small>
-    </p>
-    <div class="post-comments">
-      
-        <div class="post-comments-list">
-            
-        </div>
-    </div>
+    
   
-  </li>
+    
+   
