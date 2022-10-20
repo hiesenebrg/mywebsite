@@ -4,6 +4,7 @@ const router = express.Router()
 
 const passport = require('passport');
 const controller = require('../controllers/homecontrollers')
+const freindcontroller = require('../controllers/friendcontroller')
 router.get('/sign-up' , controller.signup);
 router.post('/create' , controller.create);
     
@@ -18,7 +19,7 @@ router.post('/create-session' , passport.authenticate(
 'local',
 {failureRedirect : '/users/sign-in'},
 ),controller.createsession);
-
+router.post('/friends/:id' , freindcontroller.create);
 router.get('/auth/google' , passport.authenticate('google', {scope:['profile' , 'email']}));
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect :'/users/sign-in'}),controller.createsession);
 
